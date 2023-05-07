@@ -20,13 +20,13 @@ import java.util.Map;
 @Component
 public class GenerateCodeHandlerFactory implements ApplicationContextAware {
 
-    private static Map<String, EcaGenerateCodeHandler> sysHandlerMap = new HashMap<>();
+    private static Map<String, GenerateCodeHandler> sysHandlerMap = new HashMap<>();
 
     private GenerateCodeHandlerFactory(){}
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        Map<String, EcaGenerateCodeHandler> generateCodeHandlerMap = applicationContext.getBeansOfType(EcaGenerateCodeHandler.class);
+        Map<String, GenerateCodeHandler> generateCodeHandlerMap = applicationContext.getBeansOfType(GenerateCodeHandler.class);
         generateCodeHandlerMap.values().forEach(handler->sysHandlerMap.put(handler.getSystemName(), handler));
     }
 
