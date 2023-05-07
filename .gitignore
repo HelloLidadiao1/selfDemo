@@ -1,0 +1,24 @@
+# java class file
+*.class
+
+# Package Files #
+*.war
+*.ear
+target/
+.settings/
+.classpath/
+.project/
+.idea/
+
+# ignore eclipse files
+.project
+.classpath
+.settings
+.factorypath
+.metadata
+.idea
+*.iml
+
+# ignore log files
+*.log
+
