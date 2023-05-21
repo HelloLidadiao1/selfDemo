@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.generate.dao.DBColumnDao">
+
+    <resultMap id="dbColumnsResultMap" type="com.generate.entity.DBColumnEntity">
+        <result column="TABLE_SCHEMA" property="tableSchema" jdbcType="VARCHAR"></result>
+        <result column="TABLE_NAME" property="tableSchema" jdbcType="VARCHAR"></result>
+        <result column="COLUMN_NAME" property="columnName" jdbcType="VARCHAR"></result>
+        <result column="DATA_TYPE" property="dataType" jdbcType="VARCHAR"></result>
+        <result column="COLUMN_TYPE" property="columnType" jdbcType="VARCHAR"></result>
+        <result column="COLUMN_COMMENT" property="columnComment" jdbcType="VARCHAR"></result>
+    </resultMap>
+
+    <sql id="all_fileds">
+        TABLE_SCHEMA,TABLE_NAME,COLUMN_NAME,DATA_TYPE,COLUMN_TYPE,COLUMN_COMMENT
+    </sql>
+
+    <sql id="baseConditions">
+        <trim prefixOverrides="AND">
+            <if test="tableName != null and !tableName.equals('')">AND TABLE_NAME = #{tableName, jdbcType=VARCHAR}</if>
+            <if test="tableSchema != null and !tableSchema.equals('')">AND TABLE_SCHEMA = #{tableSchema, jdbcType=VARCHAR}</if>
+        </trim>
+    </sql>
+
+    <select id="queryDBColumnList" resultMap="dbColumnsResultMap">
+        select
+        <include refid="all_fileds"></include>
+        from information_schema.`COLUMNS`
+        where
+        <include refid="baseConditions"></include>
+    </select>
+</mapper>
