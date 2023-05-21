@@ -13,6 +13,11 @@ public class FieldModel extends BaseModel{
     private String name;
 
     /**
+     * 数据库字段名称
+     */
+    private String dbName;
+
+    /**
      * 属性数据库类型
      */
     private String dbType;
@@ -73,5 +78,13 @@ public class FieldModel extends BaseModel{
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public String getDbName() {
+        return dbName;
+    }
+
+    public void setDbName(String dbName) {
+        this.dbName = dbName;
     }
 }

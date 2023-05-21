@@ -170,24 +170,6 @@ public abstract class AbstractGenerateCodeHandler implements GenerateCodeHandler
     }
 
     /**
-     * 生成文件Model参数校验
-     * 要求：因为这里是公共的抽象类，不管是哪个系统的handler都会先走这里的参数校验。
-     * 所以这里只存放公共的参数校验，但是也得留个口子支持不同系统的handler有不同的参数校验
-     * todo by 敏鸡
-     * @param generateCodeParamModel
-     */
-    private void validateGenerateCodeByTemplateMain(GenerateCodeModel generateCodeParamModel) {
-
-        /*if(generateCodeParamModel == null){
-            throw new GcsException(ErrorCode.PARAM_IS_NOT_EMPTY, "generateCodeParamModel");
-        }
-
-        if(StringUtils.isBlank(generateCodeParamModel.getFileKeyWords())){
-            throw new GcsException(ErrorCode.PARAM_IS_NOT_EMPTY, "systemName");
-        }*/
-    }
-
-    /**
      * 通过给定表名称，建立数据库连接，构建数据库字段List
      * @param generateCodeModel
      */
@@ -201,5 +183,43 @@ public abstract class AbstractGenerateCodeHandler implements GenerateCodeHandler
         List<DBColumnEntity> dbColumnEntityList = dbColumnManager.queryDBColumnListBySchemaAndTabName(tableSchema, systemName);
         List<FieldModel> fieldList = DBColumnToFieldConvert.convertDbColumnsToFieldModelList(dbColumnEntityList);
         generateCodeModel.setFieldList(fieldList);
+    }
+
+    /**
+     * 生成文件Model参数校验
+     * 要求：因为这里是公共的抽象类，不管是哪个系统的handler都会先走这里的参数校验。
+     * 所以这里只存放公共的参数校验，但是也得留个口子支持不同系统的handler有不同的参数校验
+     * @param generateCodeParamModel
+     */
+    private void validateGenerateCodeByTemplateMain(GenerateCodeModel generateCodeParamModel) {
+
+        if(generateCodeParamModel == null){
+            throw new GcsException(ErrorCode.PARAM_IS_NOT_EMPTY, "generateCodeParamModel");
+        }
+
+        /*文件名称*/
+        if(StringUtils.isBlank(generateCodeParamModel.getFileKeyWords())){
+            throw new GcsException(ErrorCode.PARAM_IS_NOT_EMPTY, "fileKeyWords");
+        }
+
+        /*包名称*/
+        if (StringUtils.isBlank(generateCodeParamModel.getPackageKeyWords())) {
+            throw new GcsException(ErrorCode.PARAM_IS_NOT_EMPTY, "packageKeyWords");
+        }
+
+        /*表名称*/
+        if (StringUtils.isBlank(generateCodeParamModel.getTableName())) {
+            throw new GcsException(ErrorCode.PARAM_IS_NOT_EMPTY, "tableName");
+        }
+
+        /*系统类型*/
+        if (StringUtils.isBlank(generateCodeParamModel.getSystemName())) {
+            throw new GcsException(ErrorCode.PARAM_IS_NOT_EMPTY,"systemName");
+        }
+
+        /*生成文件输出路径*/
+        if (StringUtils.isBlank(generateCodeParamModel.getFileOutPutPath())) {
+            throw new GcsException(ErrorCode.PARAM_IS_NOT_EMPTY,"fileOutPutPath");
+        }
     }
 }
