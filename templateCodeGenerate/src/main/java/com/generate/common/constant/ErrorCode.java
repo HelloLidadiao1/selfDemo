@@ -14,4 +14,9 @@ public class ErrorCode {
      * 系统[{0}],代码生成handler不存在！
      */
     public static final String SYS_HANDLER_IS_NOT_EXIST = "系统[{0}],代码生成handler不存在！";
+
+    /**
+     * 系统异常：创建freeMarkerConfiguration错误：[{0}]
+     */
+    public static final String SYS_CREATE_FREEMARKER_CFG_ERROR = "系统异常：创建freeMarkerConfiguration错误：[{0}]";
 }

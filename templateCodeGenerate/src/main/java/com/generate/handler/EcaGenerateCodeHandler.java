@@ -1,9 +1,13 @@
 package com.generate.handler;
 
+import com.generate.common.constant.Constant;
 import com.generate.common.constant.EnumConstant;
 import com.generate.handler.common.AbstractGenerateCodeHandler;
 import com.generate.model.GenerateCodeModel;
+import com.generate.vo.GenerateCodeVo;
 import org.springframework.stereotype.Component;
+
+import java.io.File;
 
 /**
  * @Author: hongjie.li
@@ -20,11 +24,31 @@ public class EcaGenerateCodeHandler extends AbstractGenerateCodeHandler {
         return EnumConstant.SystemName.ECA;
     }
 
-    /**
-     * 通过模板生成代码
-     * @param generateCodeModel
-     */
-    public void generateCodeByTemplate(GenerateCodeModel generateCodeModel){
-        //
+    @Override
+    protected GenerateCodeVo buildGenerateEntityCodeVo(String fileAllOutPutPath, GenerateCodeModel generateCodeModel) {
+        String fileKeyWords = generateCodeModel.getFileKeyWords();
+        String className = fileKeyWords + "Entity";
+        String generateFileAllPath = fileAllOutPutPath + File.separator + className + Constant.FileTypeEnum.JAVA.getFileSuffix();
+        String entityTemplatePath = getEntityTemplatePath();
+        GenerateCodeVo generateCodeVo = new GenerateCodeVo();
+        generateCodeVo.setClassName(className);
+        generateCodeVo.setGenerateFileAllPath(generateFileAllPath);
+        generateCodeVo.setTemplatePath(entityTemplatePath);
+        generateCodeVo.setFieldList(generateCodeModel.getFieldList());
+        return generateCodeVo;
+    }
+
+    @Override
+    protected GenerateCodeVo buildGenerateModelCodeVo(String fileAllOutPutPath, GenerateCodeModel generateCodeModel) {
+        String fileKeyWords = generateCodeModel.getFileKeyWords();
+        String className = fileKeyWords + "Model";
+        String generateFileAllPath = fileAllOutPutPath + File.separator + className + Constant.FileTypeEnum.JAVA.getFileSuffix();
+        String entityTemplatePath = getEntityTemplatePath();
+        GenerateCodeVo generateCodeVo = new GenerateCodeVo();
+        generateCodeVo.setClassName(className);
+        generateCodeVo.setGenerateFileAllPath(generateFileAllPath);
+        generateCodeVo.setTemplatePath(entityTemplatePath);
+        generateCodeVo.setFieldList(generateCodeModel.getFieldList());
+        return generateCodeVo;
     }
 }

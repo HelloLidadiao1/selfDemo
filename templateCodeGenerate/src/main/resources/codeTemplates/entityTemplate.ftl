@@ -1,15 +1,15 @@
 package ${packageName};
 
 public class ${className} {
-<#list fields as field>
-    private ${field.classType} ${field.name};
+<#list fieldList as field>
+    private ${field.javaType} ${field.name};
 </#list>
-<#list fields as field>
-    public ${field.classType} get${field.upperName}() {
+<#list fieldList as field>
+    public ${field.javaType} get${field.upperName}() {
         return ${field.name};
     }
 
-    public void set${field.upperName}(${field.classType} ${field.name}) {
+    public void set${field.upperName}(${field.javaType} ${field.name}) {
         this.${field.name} = ${field.name};
     }
 

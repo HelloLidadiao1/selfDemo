@@ -42,6 +42,11 @@ public class GenerateCodeModel extends BaseModel {
      */
     private List<FieldModel> fieldList;
 
+    /**
+     * 生成文件名Model
+     */
+    private GenerateFileNameModel generateFileNameModel;
+
     public GenerateCodeModel() {
     }
 
