@@ -10,9 +10,7 @@ import java.io.Serializable;
  * @Date: 2023/5/20
  */
 @Data
-public class GenerateFileNameModel implements Serializable {
-
-    private static final long serialVersionUID = 339889428877758869L;
+public class GenerateFileNameModel extends BaseModel{
 
     /**
      * PO文件名

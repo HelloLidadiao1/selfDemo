@@ -54,6 +54,13 @@ public abstract class AbstractGenerateCodeHandler implements GenerateCodeHandler
      */
     private void validateGenerateCodeByTemplateMain(GenerateCodeModel generateCodeParamModel) {
 
+        /*if(generateCodeParamModel == null){
+            throw new GcsException(ErrorCode.PARAM_IS_NOT_EMPTY, "generateCodeParamModel");
+        }
+
+        if(StringUtils.isBlank(generateCodeParamModel.getFileKeyWords())){
+            throw new GcsException(ErrorCode.PARAM_IS_NOT_EMPTY, "systemName");
+        }*/
     }
 
     /**

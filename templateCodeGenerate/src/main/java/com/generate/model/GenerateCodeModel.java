@@ -2,6 +2,7 @@ package com.generate.model;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -9,7 +10,8 @@ import java.util.List;
  * @Date: 2023/5/7
  */
 @Data
-public class GenerateCodeModel {
+public class GenerateCodeModel extends BaseModel {
+
     /**
      * 文件名称
      */

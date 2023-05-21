@@ -6,7 +6,7 @@ import org.apache.commons.lang3.StringUtils;
  * @author lihongjie
  * @date 2023/5/4
  */
-public class FieldModel {
+public class FieldModel extends BaseModel{
     /**
      * 属性名称
      */
